@@ -1,0 +1,52 @@
+@model List<ApprenticeApp.Api.Models.Admin.ApprenticeListItem>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/admin.css" />
+    <title>Apprentices</title>
+</head>
+<body>
+<section class="page">
+    <div class="hero">
+        <div>
+            <p class="eyebrow">Apprentice Program</p>
+            <h1>Apprentices</h1>
+            <p class="muted">Review, edit, or remove apprentices and their assignments.</p>
+        </div>
+        <a class="button" asp-action="Create">+ New Apprentice</a>
+    </div>
+
+    <div class="card">
+        <div class="table-head" style="grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;">
+            <span>Name</span>
+            <span>Track</span>
+            <span>Status</span>
+            <span>Assignments</span>
+            <span class="right">Actions</span>
+        </div>
+        @foreach (var apprentice in Model)
+        {
+            <div class="row" style="grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;">
+                <div>
+                    <div class="name">@apprentice.Name</div>
+                    <div class="sub">@apprentice.Status</div>
+                </div>
+                <div><span class="pill">@apprentice.Track</span></div>
+                <div><span class="pill pill-ghost">@apprentice.Status</span></div>
+                <div class="count">@apprentice.AssignmentCount</div>
+                <div class="actions">
+                    <a asp-controller="AdminAssignments" asp-action="Index" asp-route-apprenticeId="@apprentice.Id">Assignments</a>
+                    <a asp-action="Edit" asp-route-id="@apprentice.Id">Edit</a>
+                    <form method="post" asp-action="Delete" asp-route-id="@apprentice.Id" onsubmit="return confirm('Delete this apprentice and their assignments?');">
+                        <button type="submit" class="link-button">Delete</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+</body>
+</html>

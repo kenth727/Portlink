@@ -1,0 +1,64 @@
+@model ApprenticeApp.Api.Models.Admin.AssignmentFormModel
+@{
+    Layout = null;
+    var apprentice = ViewBag.Apprentice as ApprenticeApp.Core.Entities.Apprentice;
+    var mentors = ViewBag.Mentors as List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> ?? new();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/admin.css" />
+    <title>New Assignment</title>
+</head>
+<body>
+<section class="page">
+    @if (apprentice is null)
+    {
+        <p class="muted">Apprentice not found.</p>
+    }
+    else
+    {
+        <div class="hero">
+            <div>
+                <p class="eyebrow">Assignments</p>
+                <h1>New Assignment for @apprentice.FirstName @apprentice.LastName</h1>
+                <p class="muted">Track: @apprentice.Track | Status: @apprentice.Status</p>
+            </div>
+        </div>
+        <div class="card form-card">
+            <form method="post" class="form">
+                <div class="field">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" />
+                    <span asp-validation-for="Title" class="validation"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="DueDate"></label>
+                    <input asp-for="DueDate" />
+                    <span asp-validation-for="DueDate" class="validation"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Status"></label>
+                    <select asp-for="Status" asp-items="Html.GetEnumSelectList<ApprenticeApp.Core.Entities.AssignmentStatus>()"></select>
+                    <span asp-validation-for="Status" class="validation"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="MentorId">Mentor</label>
+                    <select asp-for="MentorId" asp-items="mentors"></select>
+                    <span asp-validation-for="MentorId" class="validation"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Notes"></label>
+                    <textarea asp-for="Notes" rows="3"></textarea>
+                    <span asp-validation-for="Notes" class="validation"></span>
+                </div>
+                <div class="actions-inline">
+                    <button type="submit" class="button" style="border: none;">Create</button>
+                    <a class="button" style="background: rgba(255,255,255,0.08); color: #e9eef7;" asp-controller="AdminAssignments" asp-action="Index" asp-route-apprenticeId="@apprentice.Id">Cancel</a>
+                </div>
+            </form>
+        </div>
+    }
+</section>
+</body>
+</html>

@@ -1,0 +1,17 @@
+bin/
+obj/
+*.user
+*.swp
+.vs/
+/ApprenticeApp.Api/bin/
+/ApprenticeApp.Api/obj/
+/ApprenticeApp.Core/bin/
+/ApprenticeApp.Core/obj/
+/client/node_modules/
+/client/dist/
+/apprentice-dashboard/node_modules/
+/apprentice-dashboard/dist/
+apprentice.db
+apprenticeApp.db
+*.db-shm
+*.db-wal

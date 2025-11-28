@@ -1,0 +1,60 @@
+@model List<ApprenticeApp.Api.Models.Admin.AssignmentListItem>
+@{
+    Layout = null;
+    var apprentice = ViewBag.Apprentice as ApprenticeApp.Core.Entities.Apprentice;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/admin.css" />
+    <title>Assignments</title>
+</head>
+<body>
+<section class="page">
+    @if (apprentice is null)
+    {
+        <p class="muted">Apprentice not found.</p>
+    }
+    else
+    {
+        <div class="hero">
+            <div>
+                <p class="eyebrow">Assignments</p>
+                <h1>@apprentice.FirstName @apprentice.LastName</h1>
+                <p class="muted">Track: @apprentice.Track | Status: @apprentice.Status</p>
+            </div>
+            <a class="button" asp-controller="AdminAssignments" asp-action="Create" asp-route-apprenticeId="@apprentice.Id">+ New Assignment</a>
+        </div>
+        <div class="card">
+            <div class="table-head" style="grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr 1fr;">
+                <span>Title</span>
+                <span>Due</span>
+                <span>Status</span>
+                <span>Mentor</span>
+                <span>Notes</span>
+                <span class="right">Actions</span>
+            </div>
+            @foreach (var assignment in Model)
+            {
+                <div class="row" style="grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr 1fr;">
+                    <div>
+                        <div class="name">@assignment.Title</div>
+                    </div>
+                    <div class="muted">@assignment.DueDate?.ToShortDateString()</div>
+                    <div><span class="pill pill-ghost">@assignment.Status</span></div>
+                    <div>@assignment.MentorName</div>
+                    <div class="muted">@assignment.Notes</div>
+                    <div class="actions">
+                        <a class="pill pill-ghost" asp-action="Edit" asp-route-apprenticeId="@apprentice.Id" asp-route-id="@assignment.Id">Edit</a>
+                        <form method="post" asp-action="Delete" asp-route-apprenticeId="@apprentice.Id" asp-route-id="@assignment.Id" onsubmit="return confirm('Delete this assignment?');">
+                            <button type="submit" class="link-button">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+        <p style="margin-top: 1rem;"><a class="button" style="background: rgba(255,255,255,0.08); color: #e9eef7;" asp-controller="AdminApprentices" asp-action="Index">Back to apprentices</a></p>
+    }
+</section>
+</body>
+</html>
