@@ -2,11 +2,7 @@ using PortlinkApp.Api.Hubs;
 using PortlinkApp.Api.Mappers;
 using PortlinkApp.Core.Entities;
 using PortlinkApp.Core.Repositories;
-using PortlinkApp.Core.Services;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System.Text.Json;
 
 namespace PortlinkApp.Api.Services;
 
@@ -15,20 +11,17 @@ public class LoadSimulatorService : BackgroundService
     private readonly IServiceProvider _serviceProvider;
     private readonly IHubContext<PortOperationsHub> _hubContext;
     private readonly ILogger<LoadSimulatorService> _logger;
-    private readonly IAIService _aiService;
     private int _operationsPerSecond;
     private bool _isRunning;
 
     public LoadSimulatorService(
         IServiceProvider serviceProvider,
         IHubContext<PortOperationsHub> hubContext,
-        ILogger<LoadSimulatorService> logger,
-        IAIService aiService)
+        ILogger<LoadSimulatorService> logger)
     {
         _serviceProvider = serviceProvider;
         _hubContext = hubContext;
         _logger = logger;
-        _aiService = aiService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -65,22 +58,8 @@ public class LoadSimulatorService : BackgroundService
         var portCallRepo = scope.ServiceProvider.GetRequiredService<IPortCallRepository>();
         try
         {
-            var scenario = await _aiService.GenerateRealisticPortCallScenario();
-            var scenarioData = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(scenario);
-
-            if (scenarioData is null)
-            {
-                return;
-            }
-
-            // Prefer AI-suggested IMO if unique, otherwise generate a unique simulator IMO
-            string? suggestedImo = null;
-            if (scenarioData.TryGetValue("imoNumber", out var imoElement))
-            {
-                suggestedImo = imoElement.GetString();
-            }
-
-            var uniqueImoNumber = await GenerateUniqueImoNumberAsync(vesselRepo, suggestedImo);
+            // Generate a simple, realistic scenario without relying on the AI service.
+            var uniqueImoNumber = await GenerateUniqueImoNumberAsync(vesselRepo, suggestedImo: null);
 
             var berths = await berthRepo.GetAvailableBerthsAsync();
             if (!berths.Any())
@@ -119,16 +98,77 @@ public class LoadSimulatorService : BackgroundService
             // Beam roughly proportional to length with slight randomness
             beam = Math.Round(lengthOverall * 0.15m + (decimal)Random.Shared.NextDouble() * 2m, 2);
 
+            // Generate basic vessel / cargo characteristics
+            var vesselType = (VesselType)Random.Shared.Next(0, Enum.GetValues(typeof(VesselType)).Length);
+            var vesselName = vesselType switch
+            {
+                VesselType.Container => "Sim Container Vessel",
+                VesselType.Tanker => "Sim Tanker Vessel",
+                VesselType.BulkCarrier => "Sim Bulk Carrier",
+                VesselType.RoRo => "Sim RoRo Vessel",
+                VesselType.Cruise => "Sim Cruise Ship",
+                VesselType.GeneralCargo => "Sim General Cargo Vessel",
+                VesselType.Reefer => "Sim Reefer Vessel",
+                _ => "Sim Vessel"
+            };
+
+            var flagCountries = new[]
+            {
+                "Panama", "Denmark", "Marshall Islands", "Belgium",
+                "Bahamas", "Singapore", "Norway", "United Kingdom"
+            };
+            var flagCountry = flagCountries[Random.Shared.Next(flagCountries.Length)];
+
+            string cargoDescription;
+            string cargoUnit;
+            decimal cargoQuantity;
+
+            switch (vesselType)
+            {
+                case VesselType.Container:
+                case VesselType.GeneralCargo:
+                case VesselType.Reefer:
+                    cargoDescription = "Mixed Containers";
+                    cargoUnit = "TEU";
+                    cargoQuantity = Random.Shared.Next(500, 18001);
+                    break;
+                case VesselType.Tanker:
+                    cargoDescription = "Crude Oil";
+                    cargoUnit = "tons";
+                    cargoQuantity = Random.Shared.Next(100000, 450001);
+                    break;
+                case VesselType.BulkCarrier:
+                    cargoDescription = "Iron Ore";
+                    cargoUnit = "tons";
+                    cargoQuantity = Random.Shared.Next(50000, 350001);
+                    break;
+                case VesselType.RoRo:
+                    cargoDescription = "Vehicles";
+                    cargoUnit = "units";
+                    cargoQuantity = Random.Shared.Next(200, 4001);
+                    break;
+                case VesselType.Cruise:
+                    cargoDescription = "Passengers";
+                    cargoUnit = "persons";
+                    cargoQuantity = Random.Shared.Next(1000, 7001);
+                    break;
+                default:
+                    cargoDescription = "General Cargo";
+                    cargoUnit = "tons";
+                    cargoQuantity = Random.Shared.Next(1000, 50001);
+                    break;
+            }
+
             var vessel = new Vessel
             {
-                Name = scenarioData["vesselName"].GetString() ?? "Unknown Vessel",
+                Name = vesselName,
                 ImoNumber = uniqueImoNumber,
-                VesselType = Enum.Parse<VesselType>(scenarioData["vesselType"].GetString() ?? "Container"),
-                FlagCountry = scenarioData["flagCountry"].GetString() ?? "Unknown",
+                VesselType = vesselType,
+                FlagCountry = flagCountry,
                 LengthOverall = lengthOverall,
                 Beam = beam,
                 Draft = draft,
-                CargoType = scenarioData["cargoDescription"].GetString(),
+                CargoType = cargoDescription,
                 Status = VesselStatus.Approaching
             };
 
@@ -174,11 +214,11 @@ public class LoadSimulatorService : BackgroundService
                 EstimatedTimeOfArrival = eta,
                 EstimatedTimeOfDeparture = etd,
                 Status = PortCallStatus.Scheduled,
-                CargoDescription = scenarioData["cargoDescription"].GetString(),
-                CargoQuantity = scenarioData["cargoQuantity"].GetDecimal(),
-                CargoUnit = scenarioData["cargoUnit"].GetString(),
-                DelayReason = scenarioData.ContainsKey("delayReason") ? scenarioData["delayReason"].GetString() : null,
-                PriorityLevel = scenarioData.ContainsKey("priorityLevel") ? scenarioData["priorityLevel"].GetInt32() : 3
+                CargoDescription = cargoDescription,
+                CargoQuantity = cargoQuantity,
+                CargoUnit = cargoUnit,
+                DelayReason = null,
+                PriorityLevel = Random.Shared.Next(1, 6)
             };
 
             var createdPortCall = await portCallRepo.AddAsync(portCall);
@@ -209,7 +249,7 @@ public class LoadSimulatorService : BackgroundService
         IVesselRepository vesselRepository,
         string? suggestedImo)
     {
-        // First try the AI-suggested IMO number if provided
+        // First try the suggested IMO number if provided
         if (!string.IsNullOrWhiteSpace(suggestedImo))
         {
             var existing = await vesselRepository.GetByImoNumberAsync(suggestedImo);
@@ -219,7 +259,7 @@ public class LoadSimulatorService : BackgroundService
             }
 
             _logger.LogWarning(
-                "AI suggested IMO {ImoNumber} which already exists. Generating a simulator IMO instead.",
+                "Suggested IMO {ImoNumber} which already exists. Generating a simulator IMO instead.",
                 suggestedImo);
         }
 

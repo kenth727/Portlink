@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PortlinkApp.Core.Migrations
 {
-    [DbContext(typeof(ApprenticeDbContext))]
-    partial class ApprenticeDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PortlinkDbContext))]
+    partial class PortlinkDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

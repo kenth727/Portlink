@@ -1,0 +1,236 @@
+2025-12-01 00:00:00.600 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/auth/login - null null
+2025-12-01 00:00:00.604 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.604 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/auth/login - 204 null null 4.5229ms
+2025-12-01 00:00:00.606 -08:00 [INF] Request starting HTTP/1.1 POST http://localhost:5159/api/auth/login - application/json 53
+2025-12-01 00:00:00.608 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.609 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.AuthController.Login (Portlink.Api)'
+2025-12-01 00:00:00.623 -08:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[PortlinkApp.Api.Controllers.AuthResponse]] Login(PortlinkApp.Api.Controllers.LoginRequest) on controller PortlinkApp.Api.Controllers.AuthController (Portlink.Api).
+2025-12-01 00:00:00.667 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."FullName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-12-01 00:00:00.756 -08:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-12-01 00:00:00.779 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2025-12-01 00:00:00.782 -08:00 [INF] User admin@portlink.com logged in successfully
+2025-12-01 00:00:00.788 -08:00 [INF] Executing OkObjectResult, writing value of type 'PortlinkApp.Api.Controllers.AuthResponse'.
+2025-12-01 00:00:00.798 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.AuthController.Login (Portlink.Api) in 169.1746ms
+2025-12-01 00:00:00.800 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.AuthController.Login (Portlink.Api)'
+2025-12-01 00:00:00.803 -08:00 [INF] Request finished HTTP/1.1 POST http://localhost:5159/api/auth/login - 200 null application/json; charset=utf-8 197.0667ms
+2025-12-01 00:00:00.813 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/berths?pageSize=100 - null null
+2025-12-01 00:00:00.814 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls/active - null null
+2025-12-01 00:00:00.815 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - null null
+2025-12-01 00:00:00.816 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.817 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/berths?pageSize=100 - null null
+2025-12-01 00:00:00.818 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.819 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls/active - null null
+2025-12-01 00:00:00.819 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - null null
+2025-12-01 00:00:00.820 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.820 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/berths?pageSize=100 - 204 null null 7.6098ms
+2025-12-01 00:00:00.823 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.824 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls/active - 204 null null 9.6103ms
+2025-12-01 00:00:00.825 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.831 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.831 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - 204 null null 15.4326ms
+2025-12-01 00:00:00.839 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - null null
+2025-12-01 00:00:00.840 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/berths?pageSize=100 - 204 null null 23.4022ms
+2025-12-01 00:00:00.844 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - null null
+2025-12-01 00:00:00.844 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls/active - 204 null null 25.86ms
+2025-12-01 00:00:00.845 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - 204 null null 26.0689ms
+2025-12-01 00:00:00.848 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - null null
+2025-12-01 00:00:00.850 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.853 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls/active - null null
+2025-12-01 00:00:00.855 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.857 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - null null
+2025-12-01 00:00:00.860 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/berths?pageSize=100 - null null
+2025-12-01 00:00:00.862 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.862 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - 204 null null 23.211ms
+2025-12-01 00:00:00.864 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.865 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - 204 null null 21.0514ms
+2025-12-01 00:00:00.867 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.869 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.870 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - 204 null null 21.5045ms
+2025-12-01 00:00:00.872 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - null null
+2025-12-01 00:00:00.880 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:00.907 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:00.907 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.BerthsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:00.907 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetActive (Portlink.Api)'
+2025-12-01 00:00:00.907 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:00.912 -08:00 [INF] Route matched with {action = "GetActive", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[PortlinkApp.Api.Dtos.PortCallDto]]] GetActive() on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:00.914 -08:00 [INF] Route matched with {action = "GetAll", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.PortCallStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:00.914 -08:00 [INF] Route matched with {action = "GetAll", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.PortCallStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:00.914 -08:00 [INF] Route matched with {action = "GetAll", controller = "Berths"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.BerthStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.BerthsController (Portlink.Api).
+2025-12-01 00:00:00.971 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM "Berths" AS b
+ORDER BY b."BerthCode"
+LIMIT @__p_1 OFFSET @__p_0
+2025-12-01 00:00:00.997 -08:00 [INF] Executed DbCommand (4ms) [Parameters=[@__status_Value_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."ActualTimeOfArrival", t."ActualTimeOfDeparture", t."BerthId", t."CargoDescription", t."CargoQuantity", t."CargoUnit", t."DelayReason", t."EstimatedTimeOfArrival", t."EstimatedTimeOfDeparture", t."Notes", t."PriorityLevel", t."Status", t."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM (
+    SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId"
+    FROM "PortCalls" AS p
+    WHERE p."Status" = @__status_Value_0
+    ORDER BY p."EstimatedTimeOfArrival"
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN "Vessels" AS v ON t."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON t."BerthId" = b."Id"
+ORDER BY t."EstimatedTimeOfArrival"
+2025-12-01 00:00:01.009 -08:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM "PortCalls" AS p
+INNER JOIN "Vessels" AS v ON p."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON p."BerthId" = b."Id"
+WHERE p."Status" IN (3, 4)
+ORDER BY p."EstimatedTimeOfDeparture"
+2025-12-01 00:00:01.009 -08:00 [INF] Executed DbCommand (4ms) [Parameters=[@__status_Value_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."ActualTimeOfArrival", t."ActualTimeOfDeparture", t."BerthId", t."CargoDescription", t."CargoQuantity", t."CargoUnit", t."DelayReason", t."EstimatedTimeOfArrival", t."EstimatedTimeOfDeparture", t."Notes", t."PriorityLevel", t."Status", t."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM (
+    SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId"
+    FROM "PortCalls" AS p
+    WHERE p."Status" = @__status_Value_0
+    ORDER BY p."EstimatedTimeOfArrival"
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN "Vessels" AS v ON t."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON t."BerthId" = b."Id"
+ORDER BY t."EstimatedTimeOfArrival"
+2025-12-01 00:00:01.009 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__status_Value_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "PortCalls" AS p
+WHERE p."Status" = @__status_Value_0
+2025-12-01 00:00:01.012 -08:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[PortlinkApp.Core.Entities.PortCall, Portlink.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-01 00:00:01.013 -08:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Berths" AS b
+2025-12-01 00:00:01.016 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.018 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.BerthDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.016 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__status_Value_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "PortCalls" AS p
+WHERE p."Status" = @__status_Value_0
+2025-12-01 00:00:01.022 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.039 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetActive (Portlink.Api) in 124.5934ms
+2025-12-01 00:00:01.040 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls/active - null null
+2025-12-01 00:00:01.040 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetActive (Portlink.Api)'
+2025-12-01 00:00:01.043 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:01.044 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls/active - 200 null application/json; charset=utf-8 191.1823ms
+2025-12-01 00:00:01.046 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetActive (Portlink.Api)'
+2025-12-01 00:00:01.048 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api) in 129.8791ms
+2025-12-01 00:00:01.048 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api) in 131.4438ms
+2025-12-01 00:00:01.048 -08:00 [INF] Route matched with {action = "GetActive", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[PortlinkApp.Api.Dtos.PortCallDto]]] GetActive() on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:01.049 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - null null
+2025-12-01 00:00:01.049 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - null null
+2025-12-01 00:00:01.049 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.050 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.BerthsController.GetAll (Portlink.Api) in 131.0093ms
+2025-12-01 00:00:01.050 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.054 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:01.056 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM "PortCalls" AS p
+INNER JOIN "Vessels" AS v ON p."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON p."BerthId" = b."Id"
+WHERE p."Status" IN (3, 4)
+ORDER BY p."EstimatedTimeOfDeparture"
+2025-12-01 00:00:01.056 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:01.056 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - 200 null application/json; charset=utf-8 184.9304ms
+2025-12-01 00:00:01.057 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.BerthsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.058 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - 200 null application/json; charset=utf-8 200.8136ms
+2025-12-01 00:00:01.059 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.061 -08:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[PortlinkApp.Core.Entities.PortCall, Portlink.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-01 00:00:01.062 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.064 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/berths?pageSize=100 - null null
+2025-12-01 00:00:01.064 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/berths?pageSize=100 - 200 null application/json; charset=utf-8 204.1659ms
+2025-12-01 00:00:01.068 -08:00 [INF] Route matched with {action = "GetAll", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.PortCallStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:01.069 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetActive (Portlink.Api) in 16.8739ms
+2025-12-01 00:00:01.069 -08:00 [INF] Route matched with {action = "GetAll", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.PortCallStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:01.071 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:01.075 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetActive (Portlink.Api)'
+2025-12-01 00:00:01.078 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.BerthsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.078 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls/active - 200 null application/json; charset=utf-8 38.3227ms
+2025-12-01 00:00:01.078 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__status_Value_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."ActualTimeOfArrival", t."ActualTimeOfDeparture", t."BerthId", t."CargoDescription", t."CargoQuantity", t."CargoUnit", t."DelayReason", t."EstimatedTimeOfArrival", t."EstimatedTimeOfDeparture", t."Notes", t."PriorityLevel", t."Status", t."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM (
+    SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId"
+    FROM "PortCalls" AS p
+    WHERE p."Status" = @__status_Value_0
+    ORDER BY p."EstimatedTimeOfArrival"
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN "Vessels" AS v ON t."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON t."BerthId" = b."Id"
+ORDER BY t."EstimatedTimeOfArrival"
+2025-12-01 00:00:01.079 -08:00 [INF] Route matched with {action = "GetAll", controller = "Berths"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.BerthStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.BerthsController (Portlink.Api).
+2025-12-01 00:00:01.084 -08:00 [INF] Executed DbCommand (6ms) [Parameters=[@__status_Value_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."ActualTimeOfArrival", t."ActualTimeOfDeparture", t."BerthId", t."CargoDescription", t."CargoQuantity", t."CargoUnit", t."DelayReason", t."EstimatedTimeOfArrival", t."EstimatedTimeOfDeparture", t."Notes", t."PriorityLevel", t."Status", t."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM (
+    SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId"
+    FROM "PortCalls" AS p
+    WHERE p."Status" = @__status_Value_0
+    ORDER BY p."EstimatedTimeOfArrival"
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN "Vessels" AS v ON t."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON t."BerthId" = b."Id"
+ORDER BY t."EstimatedTimeOfArrival"
+2025-12-01 00:00:01.087 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__status_Value_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "PortCalls" AS p
+WHERE p."Status" = @__status_Value_0
+2025-12-01 00:00:01.090 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__status_Value_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "PortCalls" AS p
+WHERE p."Status" = @__status_Value_0
+2025-12-01 00:00:01.090 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM "Berths" AS b
+ORDER BY b."BerthCode"
+LIMIT @__p_1 OFFSET @__p_0
+2025-12-01 00:00:01.090 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.092 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.094 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api) in 19.6511ms
+2025-12-01 00:00:01.094 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Berths" AS b
+2025-12-01 00:00:01.095 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - null null
+2025-12-01 00:00:01.095 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api) in 18.6215ms
+2025-12-01 00:00:01.096 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.098 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.BerthDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.100 -08:00 [INF] CORS policy execution successful.
+2025-12-01 00:00:01.100 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.101 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - 200 null application/json; charset=utf-8 51.9877ms
+2025-12-01 00:00:01.102 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.BerthsController.GetAll (Portlink.Api) in 16.9488ms
+2025-12-01 00:00:01.103 -08:00 [INF] Executing endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.104 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Approaching&pageSize=200 - 200 null application/json; charset=utf-8 54.5034ms
+2025-12-01 00:00:01.106 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.BerthsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.107 -08:00 [INF] Route matched with {action = "GetAll", controller = "PortCalls"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Object]] GetAll(System.Nullable`1[PortlinkApp.Core.Entities.PortCallStatus], Int32, Int32) on controller PortlinkApp.Api.Controllers.PortCallsController (Portlink.Api).
+2025-12-01 00:00:01.110 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/berths?pageSize=100 - 200 null application/json; charset=utf-8 46.8853ms
+2025-12-01 00:00:01.116 -08:00 [INF] Executed DbCommand (3ms) [Parameters=[@__status_Value_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."ActualTimeOfArrival", t."ActualTimeOfDeparture", t."BerthId", t."CargoDescription", t."CargoQuantity", t."CargoUnit", t."DelayReason", t."EstimatedTimeOfArrival", t."EstimatedTimeOfDeparture", t."Notes", t."PriorityLevel", t."Status", t."VesselId", v."Id", v."AgentEmail", v."Beam", v."Capacity", v."CargoType", v."Draft", v."FlagCountry", v."ImoNumber", v."LengthOverall", v."Name", v."OwnerCompany", v."Status", v."VesselType", b."Id", b."BerthCode", b."Facilities", b."MaxDraft", b."MaxVesselLength", b."Notes", b."Status", b."TerminalName"
+FROM (
+    SELECT p."Id", p."ActualTimeOfArrival", p."ActualTimeOfDeparture", p."BerthId", p."CargoDescription", p."CargoQuantity", p."CargoUnit", p."DelayReason", p."EstimatedTimeOfArrival", p."EstimatedTimeOfDeparture", p."Notes", p."PriorityLevel", p."Status", p."VesselId"
+    FROM "PortCalls" AS p
+    WHERE p."Status" = @__status_Value_0
+    ORDER BY p."EstimatedTimeOfArrival"
+    LIMIT @__p_2 OFFSET @__p_1
+) AS t
+INNER JOIN "Vessels" AS v ON t."VesselId" = v."Id"
+INNER JOIN "Berths" AS b ON t."BerthId" = b."Id"
+ORDER BY t."EstimatedTimeOfArrival"
+2025-12-01 00:00:01.120 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__status_Value_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "PortCalls" AS p
+WHERE p."Status" = @__status_Value_0
+2025-12-01 00:00:01.122 -08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`4[[System.Collections.Generic.IEnumerable`1[[PortlinkApp.Api.Dtos.PortCallDto, Portlink.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 00:00:01.123 -08:00 [INF] Executed action PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api) in 11.6143ms
+2025-12-01 00:00:01.124 -08:00 [INF] Executed endpoint 'PortlinkApp.Api.Controllers.PortCallsController.GetAll (Portlink.Api)'
+2025-12-01 00:00:01.125 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls?status=Scheduled&pageSize=100 - 200 null application/json; charset=utf-8 30.4016ms

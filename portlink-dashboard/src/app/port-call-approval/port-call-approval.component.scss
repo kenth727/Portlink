@@ -2,7 +2,7 @@
   padding: 20px;
 
   h2 {
-    color: #2c3e50;
+    color: var(--foreground);
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: 600;
@@ -24,6 +24,13 @@
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
+
+  h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+  }
 
   table {
     width: 100%;
@@ -92,12 +99,18 @@
 .btn-deny {
   padding: 6px 12px;
   margin-right: 8px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 4px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+  background: none;
+  box-shadow: none;
 
   &:last-child {
     margin-right: 0;
@@ -105,19 +118,21 @@
 }
 
 .btn-approve {
-  background-color: #27ae60;
+  background: #22c55e;
+  border-color: #16a34a;
   color: white;
 
   &:hover {
-    background-color: #229954;
+    background: #16a34a;
   }
 }
 
 .btn-deny {
-  background-color: #e74c3c;
+  background: #ef4444;
+  border-color: #dc2626;
   color: white;
 
   &:hover {
-    background-color: #c0392b;
+    background: #dc2626;
   }
 }

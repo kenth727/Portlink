@@ -17,12 +17,12 @@ namespace PortlinkApp.Tests;
 
 public class ApiEndpointTests
 {
-    private static ApprenticeDbContext CreateContext(string dbName)
+    private static PortlinkDbContext CreateContext(string dbName)
     {
-        var options = new DbContextOptionsBuilder<ApprenticeDbContext>()
+        var options = new DbContextOptionsBuilder<PortlinkDbContext>()
             .UseInMemoryDatabase(dbName)
             .Options;
-        return new ApprenticeDbContext(options);
+        return new PortlinkDbContext(options);
     }
 
     [Fact]
@@ -129,13 +129,11 @@ public class ApiEndpointTests
     {
         var services = new ServiceCollection().BuildServiceProvider();
         var hub = new NoopPortOperationsHubContext();
-        var aiService = new TestAiService();
 
         var simulator = new LoadSimulatorService(
             services,
             hub,
-            NullLogger<LoadSimulatorService>.Instance,
-            aiService);
+            NullLogger<LoadSimulatorService>.Instance);
 
         var controller = new LoadSimulatorController(simulator);
 

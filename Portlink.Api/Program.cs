@@ -38,11 +38,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 
-var connectionString = Environment.GetEnvironmentVariable("APPRENTICEAPP_CONNECTION")
+var connectionString = Environment.GetEnvironmentVariable("PORTLINK_CONNECTION")
+    ?? Environment.GetEnvironmentVariable("APPRENTICEAPP_CONNECTION")
     ?? builder.Configuration.GetConnectionString("DefaultConnection")
     ?? "Host=localhost;Port=5432;Database=portlink;Username=portadmin;Password=Port@Dev2024";
 
-builder.Services.AddDbContext<ApprenticeDbContext>(options =>
+builder.Services.AddDbContext<PortlinkDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 // Configure Identity
@@ -55,7 +56,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 8;
 })
-.AddEntityFrameworkStores<ApprenticeDbContext>()
+.AddEntityFrameworkStores<PortlinkDbContext>()
 .AddDefaultTokenProviders();
 
 // Configure JWT
@@ -123,7 +124,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<ApprenticeDbContext>();
+    var db = scope.ServiceProvider.GetRequiredService<PortlinkDbContext>();
     await db.Database.MigrateAsync();
 
     // Seed roles and users
@@ -144,7 +145,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// NOTE: For this sample we keep HTTP only for local development / dashboard use.
+// If you later deploy behind a real TLS terminator or reverse proxy,
+// re‑enable HTTPS redirection there instead of here.
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors("CorsPolicy");

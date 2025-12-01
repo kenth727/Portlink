@@ -39,3 +39,23 @@ code {
   color: #bfdbfe;
   word-break: break-word;
 }
+
+.auth-section {
+  margin-top: 1rem;
+}
+
+.login-form {
+  display: block;
+  max-width: 320px;
+}
+
+.login-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.login-form button {
+  display: block;
+  margin-top: 0.5rem;
+}

@@ -6,9 +6,9 @@ namespace PortlinkApp.Core.Repositories;
 
 public class BerthRepository : IBerthRepository
 {
-    private readonly ApprenticeDbContext _context;
+    private readonly PortlinkDbContext _context;
 
-    public BerthRepository(ApprenticeDbContext context)
+    public BerthRepository(PortlinkDbContext context)
     {
         _context = context;
     }

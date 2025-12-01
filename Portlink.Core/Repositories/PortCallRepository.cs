@@ -7,9 +7,9 @@ namespace PortlinkApp.Core.Repositories;
 
 public class PortCallRepository : IPortCallRepository
 {
-    private readonly ApprenticeDbContext _context;
+    private readonly PortlinkDbContext _context;
 
-    public PortCallRepository(ApprenticeDbContext context)
+    public PortCallRepository(PortlinkDbContext context)
     {
         _context = context;
     }

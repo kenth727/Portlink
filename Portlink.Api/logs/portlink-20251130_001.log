@@ -1,0 +1,200 @@
+2025-11-30 23:59:20.570 -08:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-11-30 23:59:20.609 -08:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-30 23:59:20.630 -08:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-11-30 23:59:20.642 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-11-30 23:59:20.644 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-30 23:59:20.651 -08:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-30 23:59:20.681 -08:00 [INF] User profile is available. Using 'C:\Users\k-hua\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-30 23:59:20.816 -08:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-11-30 23:59:20.842 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-11-30 23:59:20.849 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."FullName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-11-30 23:59:20.875 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."FullName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-11-30 23:59:20.885 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Vessels" AS v)
+2025-11-30 23:59:21.066 -08:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5159: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-11-30 23:59:32.531 -08:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-11-30 23:59:32.565 -08:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-30 23:59:32.583 -08:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-11-30 23:59:32.591 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2025-11-30 23:59:32.593 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-30 23:59:32.600 -08:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-30 23:59:32.608 -08:00 [INF] User profile is available. Using 'C:\Users\k-hua\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-30 23:59:32.725 -08:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-11-30 23:59:32.753 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2025-11-30 23:59:32.761 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."FullName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-11-30 23:59:32.784 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."CreatedAt", a."Email", a."EmailConfirmed", a."FullName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2025-11-30 23:59:32.794 -08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Vessels" AS v)
+2025-11-30 23:59:32.869 -08:00 [INF] Now listening on: http://localhost:5159
+2025-11-30 23:59:32.870 -08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-30 23:59:32.871 -08:00 [INF] Hosting environment: Development
+2025-11-30 23:59:32.872 -08:00 [INF] Content root path: C:\repo\EmployeeWebApplication\Portlink.Api
+2025-11-30 23:59:34.243 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - null null
+2025-11-30 23:59:34.259 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:34.262 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - 204 null null 19.3062ms
+2025-11-30 23:59:34.266 -08:00 [INF] Request starting HTTP/1.1 POST http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - null 0
+2025-11-30 23:59:34.268 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:34.283 -08:00 [INF] Executing endpoint '/hubs/port-operations/negotiate'
+2025-11-30 23:59:34.286 -08:00 [INF] Executed endpoint '/hubs/port-operations/negotiate'
+2025-11-30 23:59:34.287 -08:00 [INF] Request finished HTTP/1.1 POST http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - 200 316 application/json 21.1763ms
+2025-11-30 23:59:34.291 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/hubs/port-operations?id=sGNTPBVM5l_hg_U9QEjmRg - null null
+2025-11-30 23:59:34.295 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:34.297 -08:00 [INF] Executing endpoint '/hubs/port-operations'
+2025-11-30 23:59:54.401 -08:00 [INF] Executed endpoint '/hubs/port-operations'
+2025-11-30 23:59:54.404 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/hubs/port-operations?id=sGNTPBVM5l_hg_U9QEjmRg - 101 null null 20112.6231ms
+2025-11-30 23:59:54.535 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls/active - null null
+2025-11-30 23:59:54.536 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/berths/available - null null
+2025-11-30 23:59:54.538 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.540 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.546 -08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-30 23:59:54.546 -08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-30 23:59:54.550 -08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - null null
+2025-11-30 23:59:54.551 -08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-30 23:59:54.551 -08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-30 23:59:54.553 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.554 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/berths/available - 401 0 null 17.3038ms
+2025-11-30 23:59:54.554 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls/active - 401 0 null 19.4586ms
+2025-11-30 23:59:54.555 -08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - 204 null null 5.2356ms
+2025-11-30 23:59:54.558 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/berths/available - null null
+2025-11-30 23:59:54.561 -08:00 [INF] Request starting HTTP/1.1 POST http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - null 0
+2025-11-30 23:59:54.561 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls/active - null null
+2025-11-30 23:59:54.566 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.568 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.571 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.571 -08:00 [INF] Executing endpoint '/hubs/port-operations/negotiate'
+2025-11-30 23:59:54.573 -08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-30 23:59:54.573 -08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-30 23:59:54.574 -08:00 [INF] Executed endpoint '/hubs/port-operations/negotiate'
+2025-11-30 23:59:54.574 -08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-30 23:59:54.574 -08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-30 23:59:54.575 -08:00 [INF] Request finished HTTP/1.1 POST http://localhost:5159/hubs/port-operations/negotiate?negotiateVersion=1 - 200 316 application/json 14.5668ms
+2025-11-30 23:59:54.576 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls/active - 401 0 null 14.9406ms
+2025-11-30 23:59:54.577 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/berths/available - 401 0 null 18.6132ms
+2025-11-30 23:59:54.689 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/hubs/port-operations?id=TtnsV74Er-Z018ovzpN-jw - null null
+2025-11-30 23:59:54.691 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.692 -08:00 [INF] Executing endpoint '/hubs/port-operations'
+2025-11-30 23:59:54.700 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/portcalls/active - null null
+2025-11-30 23:59:54.701 -08:00 [INF] Request starting HTTP/1.1 GET http://localhost:5159/api/berths/available - null null
+2025-11-30 23:59:54.702 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.704 -08:00 [INF] CORS policy execution successful.
+2025-11-30 23:59:54.705 -08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-30 23:59:54.705 -08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-30 23:59:54.706 -08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-30 23:59:54.706 -08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-30 23:59:54.707 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/portcalls/active - 401 0 null 6.8509ms
+2025-11-30 23:59:54.708 -08:00 [INF] Request finished HTTP/1.1 GET http://localhost:5159/api/berths/available - 401 0 null 6.7172ms

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PortlinkApp.Core.Migrations
 {
-    [DbContext(typeof(ApprenticeDbContext))]
+    [DbContext(typeof(PortlinkDbContext))]
     [Migration("20251201004042_AddIdentity")]
     partial class AddIdentity
     {

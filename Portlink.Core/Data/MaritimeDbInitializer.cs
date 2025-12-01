@@ -5,7 +5,7 @@ namespace PortlinkApp.Core.Data;
 
 public static class MaritimeDbInitializer
 {
-    public static async Task SeedAsync(ApprenticeDbContext context)
+    public static async Task SeedAsync(PortlinkDbContext context)
     {
         if (await context.Vessels.AnyAsync())
         {

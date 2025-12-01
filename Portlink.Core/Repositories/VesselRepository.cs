@@ -6,9 +6,9 @@ namespace PortlinkApp.Core.Repositories;
 
 public class VesselRepository : IVesselRepository
 {
-    private readonly ApprenticeDbContext _context;
+    private readonly PortlinkDbContext _context;
 
-    public VesselRepository(ApprenticeDbContext context)
+    public VesselRepository(PortlinkDbContext context)
     {
         _context = context;
     }
