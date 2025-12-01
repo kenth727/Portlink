@@ -1,0 +1,37 @@
+<div class="chat">
+  <form (ngSubmit)="send()">
+    <label class="muted">Ask the port operations assistant</label>
+    <textarea
+      class="chat-textarea"
+      [(ngModel)]="question"
+      name="question"
+      rows="3"
+      placeholder="e.g. Which vessels are arriving in the next 24 hours?"
+      [disabled]="!authService.hasRole('PortOperator')"
+    ></textarea>
+
+    <button
+      type="submit"
+      class="btn"
+      [disabled]="loading || !question.trim() || !authService.hasRole('PortOperator')"
+    >
+      {{ loading ? 'Asking AI...' : 'Ask AI' }}
+    </button>
+  </form>
+
+  <div *ngIf="!authService.hasRole('PortOperator')" class="error">
+    Only PortOperator can use the AI assistant.
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="lastResponse" class="answer">
+    <p class="muted">Last question:</p>
+    <p><strong>{{ lastResponse.question }}</strong></p>
+    <p class="muted">AI answer:</p>
+    <p>{{ lastResponse.answer }}</p>
+    <p class="muted small">Answered at: {{ lastResponse.timestamp | date: 'short' }}</p>
+  </div>
+</div>

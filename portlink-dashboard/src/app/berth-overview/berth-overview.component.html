@@ -1,0 +1,116 @@
+<div class="berth-overview">
+  <h2>Berth Overview</h2>
+
+  <div class="berth-grid">
+    <div *ngFor="let berth of berths"
+         class="berth-card"
+         (click)="toggleBerthDetails(berth.id)"
+         [ngClass]="getBerthStatusClass(berth.status)">
+      <div class="berth-header">
+        <span class="status-icon">{{ getBerthStatusIcon(berth.status) }}</span>
+        <h3>{{ berth.berthCode }}</h3>
+      </div>
+
+      <div class="berth-info">
+        <div class="info-row">
+          <span class="label">Status:</span>
+          <span class="value">{{ berth.status }}</span>
+        </div>
+
+        <div class="info-row" *ngIf="getVesselForBerth(berth.id)">
+          <span class="label">Current / Next:</span>
+          <span class="value vessel-name">{{ getVesselForBerth(berth.id) }}</span>
+        </div>
+
+        <div
+          class="info-row current-actions"
+          *ngIf="getActiveCurrentPortCallForBerth(berth.id) as currentActive"
+        >
+          <span class="label"></span>
+          <button
+            *ngIf="authService.hasRole('PortOperator')"
+            type="button"
+            class="btn-remove-current"
+            (click)="removeCurrentPortCall(currentActive, $event)"
+          >
+            Remove Current
+          </button>
+        </div>
+
+        <div class="info-row" *ngIf="getCurrentPortCallForBerth(berth.id) as current">
+          <span class="label">Departure:</span>
+          <span class="value">
+            {{ current.estimatedTimeOfDeparture | date:'MMM d, HH:mm' }}
+          </span>
+        </div>
+
+        <ng-container *ngIf="getQueueForBerth(berth.id) as queue">
+          <div class="info-row" *ngIf="queue.length > 0">
+            <span class="label">Next ETA:</span>
+            <span class="value">
+              {{ queue[0].estimatedTimeOfArrival | date:'MMM d, HH:mm' }}
+            </span>
+          </div>
+
+          <div class="info-row" *ngIf="queue.length > 1">
+            <span class="label">Queue:</span>
+            <span class="value">{{ queue.length }} vessels</span>
+          </div>
+
+          <div
+            class="berth-details"
+            *ngIf="selectedBerthId === berth.id && queue.length > 0"
+          >
+            <div class="details-header">Approved Port Calls</div>
+            <table class="berth-upcoming-table">
+              <thead>
+                <tr>
+                  <th>Vessel</th>
+                  <th>ETA</th>
+                  <th>ETD</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pc of queue">
+                  <td>{{ pc.vesselName }}</td>
+                  <td class="date-cell">
+                    {{ pc.estimatedTimeOfArrival | date:'MMM d, HH:mm' }}
+                  </td>
+                  <td class="date-cell">
+                    {{ pc.estimatedTimeOfDeparture | date:'MMM d, HH:mm' }}
+                  </td>
+                  <td>
+                    <button
+                      *ngIf="authService.hasRole('PortOperator')"
+                      type="button"
+                      class="btn-remove"
+                      (click)="removeQueuedPortCall(pc, $event)"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+
+        <div class="info-row">
+          <span class="label">Max Length:</span>
+          <span class="value">{{ berth.maxVesselLength }}m</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Max Draft:</span>
+          <span class="value">{{ berth.maxDraft }}m</span>
+        </div>
+
+        <div class="info-row" *ngIf="berth.facilities">
+          <span class="label">Facilities:</span>
+          <span class="value">{{ berth.facilities }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

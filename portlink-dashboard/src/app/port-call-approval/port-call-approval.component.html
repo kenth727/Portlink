@@ -1,0 +1,55 @@
+<div class="port-call-approval">
+  <h2>Port Call Approval Queue</h2>
+
+  <div *ngIf="pendingPortCalls.length === 0" class="empty-state">
+    <p>No pending port calls requiring approval.</p>
+  </div>
+
+  <div *ngIf="pendingPortCalls.length > 0">
+    <div
+      class="approval-table"
+      *ngFor="let berthCode of getBerthCodes()"
+    >
+      <h3>Berth {{ berthCode || 'N/A' }}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Vessel</th>
+            <th>ETA</th>
+            <th>ETD</th>
+            <th>Cargo</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let portCall of getPortCallsForBerth(berthCode)">
+            <td class="vessel-name">{{ portCall.vesselName || 'Unknown' }}</td>
+            <td>{{ formatDate(portCall.estimatedTimeOfArrival) }}</td>
+            <td>{{ formatDate(portCall.estimatedTimeOfDeparture) }}</td>
+            <td>
+              <div class="cargo-info">
+                <span>{{ portCall.cargoDescription || 'N/A' }}</span>
+                <span *ngIf="portCall.cargoQuantity" class="cargo-quantity">
+                  ({{ portCall.cargoQuantity }} {{ portCall.cargoUnit }})
+                </span>
+              </div>
+            </td>
+            <td class="actions" *ngIf="authService.hasRole('PortOperator'); else readOnlyActions">
+              <button class="btn-approve" (click)="approvePortCall(portCall)">
+                ✓ Approve
+              </button>
+              <button class="btn-deny" (click)="denyPortCall(portCall)">
+                ✕ Deny
+              </button>
+            </td>
+            <ng-template #readOnlyActions>
+              <td class="actions">
+                <span class="muted small">Read-only</span>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

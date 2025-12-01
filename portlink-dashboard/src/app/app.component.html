@@ -1,0 +1,89 @@
+<main class="page">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">PortLink Maritime Dashboard</p>
+      <h1>Real-Time Port Operations</h1>
+      <p class="muted">
+        Live vessels, berths, port calls, AI insights, and simulated load.
+      </p>
+
+      <!-- Login Section -->
+      <div class="auth-section" *ngIf="!authService.isLoggedIn()">
+        <h3>Login</h3>
+        <div class="login-form">
+          <input type="email" [(ngModel)]="loginEmail" placeholder="Email" />
+          <input type="password" [(ngModel)]="loginPassword" placeholder="Password" />
+          <button (click)="login()" class="btn">Login</button>
+        </div>
+        <p class="hint">Try: admin&#64;portlink.com / Admin123!</p>
+      </div>
+
+      <div class="auth-section" *ngIf="authService.isLoggedIn() && (currentUser$ | async) as user">
+        <p>Logged in as: <strong>{{ user.email }}</strong> ({{ user.roles.join(', ') }})</p>
+        <button (click)="logout()" class="btn btn-outline">Logout</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card-grid">
+    <article class="card">
+      <p class="badge">Overview</p>
+      <h2 style="margin-top: 0.4rem;">Operational Metrics</h2>
+      <ul>
+        <li>
+          <strong>Active vessels:</strong>
+          {{ (activeVesselsCount$ | async) ?? 0 }}
+        </li>
+        <li>
+          <strong>Available berths:</strong>
+          {{ (availableBerthsCount$ | async) ?? 0 }}
+        </li>
+        <li>
+          <strong>Load ops/sec:</strong>
+          {{ (loadMetrics$ | async)?.operationsPerSecond ?? 0 }}
+        </li>
+      </ul>
+
+      <div class="muted small" *ngIf="(loadMetrics$ | async) as metrics">
+        Last operation at {{ metrics.timestamp | date: 'shortTime' }}:
+        {{ metrics.lastOperation }}
+      </div>
+
+      <div class="controls" *ngIf="authService.isLoggedIn(); else simulatorDisabled">
+        <button type="button" class="btn" (click)="startLoadSimulator()">Start Load Simulator</button>
+        <button type="button" class="btn btn-outline" (click)="stopLoadSimulator()">Stop</button>
+      </div>
+
+      <ng-template #simulatorDisabled>
+        <p class="muted small">Login to control the load simulator.</p>
+      </ng-template>
+    </article>
+
+    <article class="card">
+      <p class="badge">AI</p>
+      <h2 style="margin-top: 0.4rem;">AI Port Operations Assistant</h2>
+      <app-chat></app-chat>
+    </article>
+  </section>
+
+  <!-- Berth Overview Section (only when logged in) -->
+  <section class="card" *ngIf="authService.isLoggedIn()">
+    <app-berth-overview></app-berth-overview>
+  </section>
+
+  <!-- Port Call Approval Section (only when logged in) -->
+  <section class="card" *ngIf="authService.isLoggedIn()">
+    <app-port-call-approval></app-port-call-approval>
+  </section>
+
+  <section class="card">
+    <h2 style="margin-top: 0;">Live Maritime Events</h2>
+    <p class="muted">Real-time updates from the SignalR hub (/hubs/apprentices).</p>
+    <ul class="event-list">
+      <li *ngFor="let e of maritimeEvents">
+        <strong>{{ e.type }}:</strong>
+        <code>{{ e.payload | json }}</code>
+      </li>
+    </ul>
+  </section>
+</main>

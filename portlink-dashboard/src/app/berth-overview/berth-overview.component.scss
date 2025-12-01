@@ -1,0 +1,158 @@
+.berth-overview {
+  padding: 20px;
+
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
+
+.berth-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.berth-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &.status-available {
+    border-left: 4px solid #27ae60;
+  }
+
+  &.status-occupied {
+    border-left: 4px solid #f39c12;
+  }
+
+  &.status-maintenance {
+    border-left: 4px solid #e74c3c;
+  }
+}
+
+.berth-details {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #ecf0f1;
+  background: #f7fafc;
+  border-radius: 4px;
+  padding: 8px;
+
+  .details-header {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #34495e;
+  }
+}
+
+.berth-upcoming-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  th,
+  td {
+    padding: 4px 6px;
+    text-align: left;
+    color: #2c3e50;
+  }
+
+  th {
+    font-weight: 600;
+    color: #7f8c8d;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #eef3f9;
+  }
+
+  .date-cell {
+    white-space: nowrap;
+  }
+}
+
+.btn-remove {
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  border: none;
+  background: #e74c3c;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-remove-current {
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  border: none;
+  background: #e67e22;
+  color: white;
+  cursor: pointer;
+}
+
+.berth-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ecf0f1;
+
+  .status-icon {
+    font-size: 20px;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+}
+
+.berth-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+
+  .label {
+    color: #7f8c8d;
+    font-weight: 500;
+  }
+
+  .value {
+    color: #2c3e50;
+    font-weight: 600;
+
+    &.vessel-name {
+      color: #3498db;
+    }
+  }
+}
+
+.info-row.current-actions {
+  justify-content: flex-end;
+
+  .label {
+    display: none;
+  }
+}

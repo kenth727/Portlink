@@ -1,0 +1,41 @@
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.hero p.muted {
+  max-width: 36rem;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.event-list li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(30, 64, 175, 0.55);
+  font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.event-list li:last-child {
+  border-bottom: none;
+}
+
+code {
+  color: #bfdbfe;
+  word-break: break-word;
+}

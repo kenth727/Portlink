@@ -1,0 +1,198 @@
+@model PortlinkApp.Api.Models.Maritime.ManualPortOperationViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Manual Maritime Operations</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 1.5rem;
+            background-color: #020617;
+            color: #e5e7eb;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #020617;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+            margin-bottom: 1rem;
+        }
+        .row {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .col {
+            flex: 1 1 320px;
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.15rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(31, 41, 55, 0.9);
+            padding: 0.45rem 0.6rem;
+            background-color: #020617;
+            color: #e5e7eb;
+        }
+        textarea { min-height: 3rem; }
+        button {
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.8);
+            background: linear-gradient(to right, #0ea5e9, #22c55e);
+            color: #f9fafb;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.95;
+        }
+        .muted {
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+        .events {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0;
+            font-size: 0.85rem;
+        }
+        .events li {
+            border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+            padding: 0.35rem 0;
+        }
+        .events li:last-child {
+            border-bottom: none;
+        }
+        .success {
+            margin-top: 0.5rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            background-color: rgba(22, 163, 74, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.7);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h1>Manual Maritime Operations</h1>
+    <p class="muted">
+        Use this MVC + Razor page to create port calls manually. Submitting the form will also emit the same SignalR
+        events that power the Angular “Live Maritime Events” dashboard.
+    </p>
+
+    <div class="card">
+        <h2 style="margin-top:0;">Create Port Call</h2>
+        <form asp-action="Manual" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col">
+                    <label asp-for="SelectedVesselId"></label>
+                    <select asp-for="SelectedVesselId">
+                        <option value="">-- select vessel --</option>
+                        @foreach (var v in Model.Vessels.OrderBy(v => v.Name))
+                        {
+                            <option value="@v.Id">@v.Name (@v.ImoNumber, @v.VesselType)</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label asp-for="SelectedBerthId"></label>
+                    <select asp-for="SelectedBerthId">
+                        <option value="">-- select berth --</option>
+                        @foreach (var b in Model.Berths.OrderBy(b => b.BerthCode))
+                        {
+                            <option value="@b.Id">@b.BerthCode - @b.TerminalName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:0.75rem;">
+                <div class="col">
+                    <label asp-for="EstimatedTimeOfArrival"></label>
+                    <input asp-for="EstimatedTimeOfArrival" type="datetime-local" />
+                </div>
+                <div class="col">
+                    <label asp-for="EstimatedTimeOfDeparture"></label>
+                    <input asp-for="EstimatedTimeOfDeparture" type="datetime-local" />
+                </div>
+            </div>
+
+            <div style="margin-top:0.75rem;">
+                <label asp-for="CargoDescription"></label>
+                <textarea asp-for="CargoDescription"></textarea>
+            </div>
+
+            <div class="row" style="margin-top:0.75rem;">
+                <div class="col">
+                    <label asp-for="CargoQuantity"></label>
+                    <input asp-for="CargoQuantity" type="number" step="0.01" />
+                </div>
+                <div class="col">
+                    <label asp-for="CargoUnit"></label>
+                    <select asp-for="CargoUnit">
+                        <option value="">-- select unit --</option>
+                        <option value="TEU">TEU</option>
+                        <option value="Tons">Tons</option>
+                        <option value="m3">m3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:0.75rem;">
+                <div class="col">
+                    <label asp-for="TestVesselLengthOverall"></label>
+                    <input asp-for="TestVesselLengthOverall" type="number" step="0.1" />
+                </div>
+                <div class="col">
+                    <label asp-for="TestVesselDraft"></label>
+                    <input asp-for="TestVesselDraft" type="number" step="0.1" />
+                </div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <button type="submit">Create Port Call &amp; Broadcast Event</button>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.LastOperationSummary))
+            {
+                <div class="success">
+                    @Model.LastOperationSummary
+                </div>
+            }
+        </form>
+    </div>
+
+    <div class="card">
+        <h2 style="margin-top:0;">Recent / Upcoming Port Calls</h2>
+        <p class="muted">Shows a simple MVC view of the same maritime data the Angular dashboard consumes.</p>
+        <ul class="events">
+            @foreach (var pc in Model.RecentPortCalls.OrderByDescending(p => p.EstimatedTimeOfArrival))
+            {
+                <li>
+                    <strong>@pc.Vessel?.Name</strong> at berth <strong>@pc.Berth?.BerthCode</strong> |
+                    ETA (local): @pc.EstimatedTimeOfArrival.ToLocalTime():g |
+                    Status: @pc.Status
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+</body>
+</html>
